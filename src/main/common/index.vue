@@ -13,7 +13,7 @@
     <div style="background-color:white;margin-bottom:20px">
         <div class="col-12 topic_bar">
             <h5 class="topic col-9">小说推荐</h5>
-            <span class="col-3 more">更多<van-icon name="arrow" /></span>
+            <span class="col-3 more"><router-link to="/recommended">更多</router-link><van-icon name="arrow" /></span>
         </div>
         <van-grid :column-num="3" :border="false">
             <van-grid-item v-for="(item,index) in support" :key="index">
@@ -25,7 +25,7 @@
     <div style="background-color:white;margin-bottom:20px">
         <div class="col-12 topic_bar">
             <h5 class="topic col-9">排行榜</h5>
-            <span class="col-3 more">更多<van-icon name="arrow" /></span>
+            <span class="col-3 more"><router-link to="/ranking">更多</router-link><van-icon name="arrow" /></span>
         </div>
         <div class="col-12">
             <van-tabs type="card" style="padding:0;">
@@ -67,7 +67,7 @@
     <div style="background-color:white;margin-bottom:20px">
         <div class="col-12 topic_bar">
             <h5 class="topic col-9">畅销完本</h5>
-            <span class="col-3 more">更多<van-icon name="arrow" /></span>
+            <span class="col-3 more"><router-link to="/hot">更多</router-link><van-icon name="arrow" /></span>
         </div>
         <div class="col-12">
             <van-card v-for="(item,index) in support" :key="index">
