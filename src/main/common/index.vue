@@ -1,10 +1,5 @@
 <template>
 <div class="bg">
-    <van-popup v-model="show" position="left" :style="{height:'100%',width:'80%'}"></van-popup>
-    <div class="row col-12" style="background-color:white">
-        <van-icon name="ellipsis" class="col-2 user_icon" @click="show = !show"/>
-        <van-search placeholder="请输入搜索关键词" v-model="search" class="col-10" right-icon="search" left-icon=""/>
-    </div>
     <div class="col-12">
         <el-carousel :interval="3000" type="card" height="150px" indicator-position="none">
             <el-carousel-item v-for="item in images" :key="item" class="carousel_item">
@@ -20,14 +15,12 @@
             <h5 class="topic col-9">小说推荐</h5>
             <span class="col-3 more">更多<van-icon name="arrow" /></span>
         </div>
-        <div class="col-12">
-            <van-grid :column-num="3" :border="false">
-                <van-grid-item v-for="(item,index) in support" :key="index">
-                    <el-image style=" height:110px;width:95px" :src="item.cover" fit="fill"></el-image>
-                    <span class="bookName">{{ item.name }}</span>
-                </van-grid-item>
-            </van-grid>
-        </div>
+        <van-grid :column-num="3" :border="false">
+            <van-grid-item v-for="(item,index) in support" :key="index">
+                <el-image style=" height:110px;width:95px" :src="item.cover" fit="fill"></el-image>
+                <span class="bookName">{{ item.name }}</span>
+            </van-grid-item>
+        </van-grid>
     </div>
     <div style="background-color:white;margin-bottom:20px">
         <div class="col-12 topic_bar">
@@ -37,7 +30,7 @@
         <div class="col-12">
             <van-tabs type="card" style="padding:0;">
                 <van-tab title="热销榜">
-                    <van-swipe :loop="false" :width="1" :height="160" :show-indicators="false">
+                    <van-swipe :loop="false" :width="110" :height="160" :show-indicators="false">
                         <van-swipe-item v-for="(item,index) in support" :key="index" class="swipe_item">
                             <el-image style="height:110px;width:95px" :src="item.cover" fit="fill"></el-image>
                             <span class="bookName">{{ item.name }}</span>
@@ -45,7 +38,7 @@
                     </van-swipe>
                 </van-tab>
                 <van-tab title="风云榜">
-                    <van-swipe :loop="false" :width="1" :height="160" :show-indicators="false">
+                    <van-swipe :loop="false" :width="110" :height="160" :show-indicators="false">
                         <van-swipe-item v-for="(item,index) in support" :key="index" class="swipe_item">
                             <el-image style="height:110px;width:95px" :src="item.cover" fit="fill"></el-image>
                             <span class="bookName">{{ item.name }}</span>
@@ -53,7 +46,7 @@
                     </van-swipe>
                 </van-tab>
                 <van-tab title="签约榜">
-                    <van-swipe :loop="false" :width="1" :height="160" :show-indicators="false">
+                    <van-swipe :loop="false" :width="110" :height="160" :show-indicators="false">
                         <van-swipe-item v-for="(item,index) in support" :key="index" class="swipe_item">
                             <el-image style="height:110px;width:95px" :src="item.cover" fit="fill"></el-image>
                             <span class="bookName">{{ item.name }}</span>
@@ -61,7 +54,7 @@
                     </van-swipe>
                 </van-tab>
                 <van-tab title="推荐榜">
-                    <van-swipe :loop="false" :width="1" :height="160" :show-indicators="false">
+                    <van-swipe :loop="false" :width="110" :height="160" :show-indicators="false">
                         <van-swipe-item v-for="(item,index) in support" :key="index" class="swipe_item">
                             <el-image style="height:110px;width:95px" :src="item.cover" fit="fill"></el-image>
                             <span class="bookName">{{ item.name }}</span>
@@ -98,8 +91,6 @@
 export default {
     data(){
         return {
-            show : false,
-            search:'',
             images: [
                 'https://bookcover.yuewen.com/qdbimg/349573/1016073648/90',
                 'https://bookcover.yuewen.com/qdbimg/349573/1010734492/90',
@@ -123,7 +114,7 @@ export default {
 .row{
     margin:0;
 }
-.user_icon,.carousel_item{
+.carousel_item{
     display: flex;
     justify-content:center;
     align-items: center;

@@ -10,7 +10,7 @@ import infiniteScroll from 'vue-infinite-scroll';
 
 //导入vue
 import Vue from 'vue'
-import App from './main/app.vue'
+import App from './main/common/app.vue'
 
 //导入vuex
 import Vuex from 'vuex'
@@ -22,7 +22,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 //导入全局函数
-import Common from './main/common.js';
+import Common from './main/common/common.js';
 
 //配置elementUI，vuex，infiniteScroll,vant
 Vue.use(ElementUI)

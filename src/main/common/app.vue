@@ -1,5 +1,6 @@
 <template>
 <div>
+     <Head></Head>
      <transition mode="out-in">
           <router-view></router-view>
      </transition>
@@ -9,9 +10,11 @@
 
 <script>
 import Foot from './footer.vue'
+import Head from './header.vue'
 export default{
      components:{
           Foot,
+          Head,
      },
 }
 </script>

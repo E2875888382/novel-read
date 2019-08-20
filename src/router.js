@@ -5,7 +5,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 //导入自定义的vue组件
-import Index from './main/index.vue'
+import Index from './main/common/index.vue'
 
 
 //手动安装vue-router
