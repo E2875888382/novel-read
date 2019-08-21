@@ -1,5 +1,21 @@
 <template>
 <div class="bg">
+    <van-popup v-model="show" position="left" :style="{ width: '70%',height:'100%' }">
+        <div class="col-12 dir">
+            <p>目录</p>
+        </div>
+        <p class="sup">七星鲁王</p>
+        <div class="col-12">
+            <van-list>
+                <van-cell
+                    v-for="(item,index) in 30"
+                    :key="index"
+                    :title="'七星鲁王 第'+item+'章'"
+                    to="/book/dir/"
+                />
+            </van-list>
+        </div>
+    </van-popup>
     <van-sticky>
         <p class="col-12 top">七星鲁王 第一章 血尸</p>
     </van-sticky>
@@ -10,7 +26,7 @@
         finished-text="没有更多了"
         @load="onLoad"
         >
-            <div class="content" v-for="(item,index) in content " :key="index">
+            <div class="content" v-for="(item,index) in content " :key="index" @click="show = !show">
                 <h4 class="col-12">{{ item.title }}</h4>
                 <p class="col-12" v-for="(text,index) in item.content" :key="index">{{ text }}</p>
             </div>
@@ -23,6 +39,7 @@
 export default {
     data(){
         return {
+            show:false,
             loading: false,
             finished: false,
             isLoading: false,
@@ -104,5 +121,24 @@ export default {
     margin:0;
     font-size:18px;
     line-height: 1.8;
+}
+.sup{
+    background-color: whitesmoke;
+    margin:0;
+    padding:0 30px;
+    font-size:12px;
+    line-height:36px;
+    color:#999;
+}
+.dir{
+    padding:0;
+}
+.dir>p{
+    text-align: center;
+    border-bottom: 1px solid red;
+    margin:0;
+    font-size:14px;
+    line-height:2em;
+    color:red;
 }
 </style>
