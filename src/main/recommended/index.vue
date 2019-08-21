@@ -3,12 +3,18 @@
     <div class="col-12 top">
         <van-icon name="arrow-left" @click="back"/><p>小说推荐</p>
     </div>
-    <div class="col-12 class" style="background-color:whitesmoke;height:132px">
+    <div class="col-12 class" style="background-color:whitesmoke;height:140px">
         <span :class="{'col-2':true,'active':index == num}" v-for="(item,index) in Class" :key="index" @click="changeClass(index)">
             {{ item }}
         </span>
     </div>
     <div class="col-12">
+        <van-list
+        v-model="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="onLoad"
+        >
         <van-card v-for="(item,index) in support" :key="index">
             <p slot="title" class="title">{{ item.name }}</p>
             <p slot="desc" class="desc">是时势造英雄还是英雄造时势？肖恩带着技能面板穿越异界，用实力和手段成就战神领主！</p>
@@ -21,6 +27,7 @@
             </div>
             <el-image slot="thumb" style=" height:110px;width:80px" :src="item.cover" fit="fill"></el-image>
         </van-card>
+        </van-list>
     </div>
 </div>
 </template>
@@ -29,6 +36,8 @@
 export default {
     data(){
         return {
+            loading: false,
+            finished: false,
             num:0,
             Class:[
                 '全部','玄幻','奇幻','武侠','仙侠','都市','现实','军事',
@@ -50,6 +59,19 @@ export default {
         },
         changeClass(index){
             this.num = index;
+        },
+        onLoad() {
+            // 异步更新数据
+            setTimeout(() => {
+                this.support = this.support.concat(this.support);
+                // 加载状态结束
+                this.loading = false;
+
+                // 数据全部加载完成
+                if (this.support.length >= 40) {
+                    this.finished = true;
+                }
+            }, 300);
         }
     }
 }
@@ -57,7 +79,7 @@ export default {
 
 <style scoped>
 .active{
-    border:1px solid red;
+    border:1px solid red !important;
     color:red;
 }
 .top{
@@ -106,6 +128,7 @@ export default {
     padding:0;
     border-radius: 30px;
     text-align:center;
+    border:1px solid transparent;
 }
 </style>
 
