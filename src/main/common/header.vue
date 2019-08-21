@@ -1,10 +1,12 @@
 <template>
 <div>
     <van-popup v-model="show" position="left" :style="{height:'100%',width:'80%'}"></van-popup>
-    <div class="row col-12" style="background-color:white">
-        <van-icon name="ellipsis" class="col-2 user_icon" @click="show = !show"/>
-        <van-search placeholder="请输入搜索关键词" v-model="search" class="col-10" right-icon="search" left-icon=""/>
-    </div>
+    <van-sticky>
+        <div class="row col-12" style="background-color:white">
+            <van-icon name="ellipsis" class="col-2 user_icon" @click="show = !show"/>
+            <van-search placeholder="请输入搜索关键词" v-model="search" class="col-10" right-icon="search" left-icon=""/>
+        </div>
+    </van-sticky>
 </div>
 </template>
 
@@ -25,6 +27,8 @@ export default {
     justify-content:center;
     align-items: center;
 }
-
+.row{
+    margin:0;
+}
 </style>
 
