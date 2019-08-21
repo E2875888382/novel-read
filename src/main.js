@@ -33,10 +33,16 @@ Vue.use(Vant);
 // 创建vuex
 var store = new Vuex.Store({
     state:{
-
+        header_show:true,
+        footer_show:true,
     },
     mutations:{
-
+        hiddenHeader(state,show){
+            state.header_show = show;
+        },
+        hiddenFooter(state,show){
+            state.footer_show = show;
+        }
     }
 })
 
