@@ -6,9 +6,8 @@ var app=express();
 //设置静态文件夹
 app.use('/node_modules/',express.static(path.join(__dirname,'../node_modules/')));
 
-
-//挂载router
-// app.use(login_Router);
+var book = require('./read');
+app.use(book);
 
 //设置服务器端口
 app.listen(8000,function(){
