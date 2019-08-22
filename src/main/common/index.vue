@@ -101,9 +101,6 @@ export default {
                 {cover:'https://bookcover.yuewen.com/qdbimg/349573/1015929450/90',name:'我的眼睛能鉴宝'},
                 {cover:'https://bookcover.yuewen.com/qdbimg/349573/1015859383/90',name:'我是篮坛巨星'},
                 {cover:'https://bookcover.yuewen.com/qdbimg/349573/1015839132/90',name:'反派驾临'},
-                {cover:'https://bookcover.yuewen.com/qdbimg/349573/1013744668/90',name:'谍战最新力作'},
-                {cover:'https://bookcover.yuewen.com/qdbimg/349573/1015717336/90',name:'最强赏金猎人'},
-                {cover:'https://bookcover.yuewen.com/qdbimg/349573/1015407320/90',name:'大明最后一个狠人'},
             ]
         }
     },
