@@ -43,9 +43,7 @@ export default {
         }
     },
     mounted(){
-        this.jsp('book',{bookId:10,name:'盗墓笔记'}).then((data)=>{
-            console.log(data)
-        })
+
     }
 }
 </script>
