@@ -5,19 +5,16 @@
     </div>
     <div class="col-12 dir">
         <p>目录</p>
-        <div class="row col-12">
-            <p class="col-10">共484章</p>
-            <span class="col-2">倒序</span>
-        </div>
+        <p class="col-12">共484章</p>
     </div>
-    <div>
-        <p class="sup">七星鲁王</p>
+    <div v-for="(item,key,index) in chapter" :key="index">
+        <p class="sup">{{key}}</p>
         <div class="col-12">
             <van-list>
                 <van-cell
-                    v-for="(item,index) in 30"
+                    v-for="(i,index) in item"
                     :key="index"
-                    :title="'七星鲁王 第'+item+'章'"
+                    :title="i|format"
                     to="/book/dir/read"
                 />
             </van-list>
@@ -32,6 +29,12 @@ export default {
         return {
             current:this.$route.params.name,
             chapter:[],
+        }
+    },
+    filters:{
+        format:function(value){
+            value = value.substr(0,value.length-5);
+            return value;
         }
     },
     created(){
@@ -77,7 +80,7 @@ export default {
 .dir{
     padding:0;
 }
-.dir>p{
+.dir p:nth-child(1){
     text-align: center;
     border-bottom: 1px solid red;
     margin:0;
@@ -85,16 +88,12 @@ export default {
     line-height:2em;
     color:red;
 }
-.dir .row p{
+.dir p:nth-child(2){
     margin:0;
     font-weight:800;
     line-height:3em;
     font-size:15px;
-}
-.dir .row span{
-    padding:0;
-    line-height:3em;
-    font-size:15px;
+    text-indent: 1em;
 }
 .sup{
     background-color: whitesmoke;
