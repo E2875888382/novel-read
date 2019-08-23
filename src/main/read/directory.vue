@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="col-12 top">
-        <van-icon name="arrow-left" @click="back"/><p>盗墓笔记</p>
+        <van-icon name="arrow-left" @click="back"/><p>{{current}}</p>
     </div>
     <div class="col-12 dir">
         <p>目录</p>
@@ -30,16 +30,25 @@
 export default {
     data(){
         return {
-
+            current:this.$route.params.name,
+            chapter:[],
         }
     },
     created(){
         this.hiddenHeader();
     },
+    mounted(){
+        this.chapterList();
+    },
     destroyed(){
         this.showHeader();
     },
     methods:{
+        chapterList(){
+            this.jsp('chapterList',{book:this.current}).then((data)=>{
+                this.chapter = data;
+            })
+        },
         hiddenHeader(){
             this.$store.commit('hiddenHeader',false);
         },
@@ -47,7 +56,7 @@ export default {
             this.$store.commit('hiddenHeader',true);
         },
         back(){
-            this.$router.push({path:'/book'});
+            this.$router.go(-1);
         },
     }
 }

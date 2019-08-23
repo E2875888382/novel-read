@@ -36,6 +36,7 @@
 export default {
     data(){
         return {
+            book:this.$route.params.name,
             loading: false,
             finished: false,
             num:0,

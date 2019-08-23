@@ -25,8 +25,8 @@ var router=new VueRouter({
         { path:'/search',component:Search },
         { path:'/ranking',component:Ranking },
         { path:'/hot',component:Hot },
-        { path:'/book',component:ReadIndex },
-        { path:'/book/dir',component:ReadDirectory },
+        { path:'/book/:name',name:'read',component:ReadIndex },
+        { path:'/chapter/:name',name:'chapter',component:ReadDirectory },
         { path:'/book/dir/read',component:Read },
     ]
 })

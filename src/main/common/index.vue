@@ -2,11 +2,10 @@
 <div class="bg">
     <div class="col-12">
         <el-carousel :interval="3000" type="card" height="150px" indicator-position="none">
-            <el-carousel-item v-for="item in images" :key="item" class="carousel_item">
-                     <el-image
-                        style=" height: 124px;width:93px"
-                        :src="item"
-                        fit="fill"></el-image>
+            <el-carousel-item v-for="(item,index) in books" :key="index" class="carousel_item">
+                <router-link :to="{name:'read',params:{name:item.title}}">
+                    <el-image style=" height: 124px;width:93px" :src="item.cover" fit="fill"></el-image>
+                </router-link>
             </el-carousel-item>
         </el-carousel>
     </div>
@@ -16,9 +15,11 @@
             <span class="col-3 more"><router-link to="/recommended">更多</router-link><van-icon name="arrow" /></span>
         </div>
         <van-grid :column-num="3" :border="false">
-            <van-grid-item v-for="(item,index) in support" :key="index">
-                <el-image style=" height:110px;width:95px" :src="item.cover" fit="fill"></el-image>
-                <span class="bookName">{{ item.name }}</span>
+            <van-grid-item v-for="(item,index) in books" :key="index">
+                <router-link :to="{name:'read',params:{name:item.title}}">
+                    <el-image style=" height:110px;width:95px" :src="item.cover" fit="fill"></el-image>
+                    <span class="bookName">{{ item.title }}</span>
+                </router-link>
             </van-grid-item>
         </van-grid>
     </div>
@@ -31,33 +32,33 @@
             <van-tabs type="card" style="padding:0;">
                 <van-tab title="热销榜">
                     <van-swipe :loop="false" :width="110" :height="160" :show-indicators="false">
-                        <van-swipe-item v-for="(item,index) in support" :key="index" class="swipe_item">
+                        <van-swipe-item v-for="(item,index) in books" :key="index" class="swipe_item">
                             <el-image style="height:110px;width:95px" :src="item.cover" fit="fill"></el-image>
-                            <span class="bookName">{{ item.name }}</span>
+                            <span class="bookName">{{ item.title }}</span>
                         </van-swipe-item>
                     </van-swipe>
                 </van-tab>
                 <van-tab title="风云榜">
                     <van-swipe :loop="false" :width="110" :height="160" :show-indicators="false">
-                        <van-swipe-item v-for="(item,index) in support" :key="index" class="swipe_item">
+                        <van-swipe-item v-for="(item,index) in books" :key="index" class="swipe_item">
                             <el-image style="height:110px;width:95px" :src="item.cover" fit="fill"></el-image>
-                            <span class="bookName">{{ item.name }}</span>
+                            <span class="bookName">{{ item.title }}</span>
                         </van-swipe-item>
                     </van-swipe>
                 </van-tab>
                 <van-tab title="签约榜">
                     <van-swipe :loop="false" :width="110" :height="160" :show-indicators="false">
-                        <van-swipe-item v-for="(item,index) in support" :key="index" class="swipe_item">
+                        <van-swipe-item v-for="(item,index) in books" :key="index" class="swipe_item">
                             <el-image style="height:110px;width:95px" :src="item.cover" fit="fill"></el-image>
-                            <span class="bookName">{{ item.name }}</span>
+                            <span class="bookName">{{ item.title }}</span>
                         </van-swipe-item>
                     </van-swipe>
                 </van-tab>
                 <van-tab title="推荐榜">
                     <van-swipe :loop="false" :width="110" :height="160" :show-indicators="false">
-                        <van-swipe-item v-for="(item,index) in support" :key="index" class="swipe_item">
+                        <van-swipe-item v-for="(item,index) in books" :key="index" class="swipe_item">
                             <el-image style="height:110px;width:95px" :src="item.cover" fit="fill"></el-image>
-                            <span class="bookName">{{ item.name }}</span>
+                            <span class="bookName">{{ item.title }}</span>
                         </van-swipe-item>
                     </van-swipe>
                 </van-tab>
@@ -70,17 +71,23 @@
             <span class="col-3 more"><router-link to="/hot">更多</router-link><van-icon name="arrow" /></span>
         </div>
         <div class="col-12">
-            <van-card v-for="(item,index) in support" :key="index">
-                <p slot="title" class="title">{{ item.name }}</p>
-                <p slot="desc" class="desc">是时势造英雄还是英雄造时势？肖恩带着技能面板穿越异界，用实力和手段成就战神领主！</p>
+            <van-card v-for="(item,index) in books" :key="index">
+                <router-link :to="{name:'read',params:{name:item.title}}" slot="title">
+                    <p class="title">{{ item.title }}</p>
+                </router-link>
+                <router-link :to="{name:'read',params:{name:item.title}}" slot="desc">
+                    <p class="desc">{{ item.intro }}</p>
+                </router-link>
                 <div slot="tags" class="ifo">
-                    <span class="author"><van-icon name="contact" />唐家三少</span>
+                    <span class="author"><van-icon name="contact" />{{ item.author }}</span>
                     <div>
                         <van-tag plain>仙侠</van-tag>
                         <van-tag plain type="primary">291.62万字</van-tag>
                     </div>
                 </div>
-                <el-image slot="thumb" style=" height:110px;width:80px" :src="item.cover" fit="fill"></el-image>
+                <router-link :to="{name:'read',params:{name:item.title}}" slot="thumb" >
+                    <el-image style=" height:110px;width:80px" :src="item.cover" fit="fill"></el-image>
+                </router-link>
             </van-card>
         </div>
     </div>
@@ -91,19 +98,19 @@
 export default {
     data(){
         return {
-            images: [
-                'https://bookcover.yuewen.com/qdbimg/349573/1016073648/90',
-                'https://bookcover.yuewen.com/qdbimg/349573/1010734492/90',
-                'https://bookcover.yuewen.com/qdbimg/349573/1015711046/90',
-                'https://bookcover.yuewen.com/qdbimg/349573/1011139133/90',
-            ],
-            support:[
-                {cover:'https://bookcover.yuewen.com/qdbimg/349573/1015929450/90',name:'我的眼睛能鉴宝'},
-                {cover:'https://bookcover.yuewen.com/qdbimg/349573/1015859383/90',name:'我是篮坛巨星'},
-                {cover:'https://bookcover.yuewen.com/qdbimg/349573/1015839132/90',name:'反派驾临'},
-            ]
+            books:null,
         }
     },
+    mounted(){
+        this.bookIfoTotal();
+    },
+    methods:{
+        bookIfoTotal(){
+            this.jsp('bookIfoTotal').then((data)=>{
+                this.books = data;
+            })
+        }
+    }
 }
 </script>
 
@@ -124,6 +131,10 @@ export default {
 .bookName{
     line-height: 18px;
     font-size:12px;
+    width:100%;
+    text-align: center;
+    display: inline-block;
+    color:black;
 }
 .topic_bar{
     display: flex;
@@ -167,17 +178,25 @@ export default {
     font-weight:600;
     font-size:14px;
     margin-bottom:8px;
+    color:black;
 }
 .desc{
     color:#999;
     margin-bottom: 8px;
     font-size:12px;
+    line-height:20px;
+    max-height:60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .author{
     color:#999;
     font-size:12px;
     display:flex;
     align-items:center;
+    white-space: nowrap;
+    max-width:80px;
+    text-overflow: ellipsis;
 }
 .el-image{
     box-shadow: 0 1px 6px rgba(0,0,0,.35), 0 0 5px #f9f2e9 inset;
