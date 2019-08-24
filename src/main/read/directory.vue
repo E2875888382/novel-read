@@ -15,7 +15,7 @@
                     v-for="(i,index) in item"
                     :key="index"
                     :title="i|format"
-                    to="/book/dir/read"
+                    :to="{name:'detail',params:{name:current,volume:key,chapter:i}}"
                 />
             </van-list>
         </div>

@@ -6,7 +6,7 @@ router.get('/chapterDetail',(req,res)=>{
     let book = req.query.book;
     let volume = req.query.volume;
     let chapter = req.query.chapter;
-    file.chapterDetail(`../books/${book}/${volume}/${chapter}.json`).then((data)=>{
+    file.chapterDetail(`../books/${book}/${volume}/${chapter}`).then((data)=>{
         res.type('text/javascript');
         res.status(200).send(`${req.query.callback}(${data})`);
     })
