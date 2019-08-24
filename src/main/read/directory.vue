@@ -50,10 +50,13 @@ export default {
     methods:{
         chapterList(){
             this.jsp('chapterList',{book:this.current}).then((data)=>{
+                for(var item in data){
+                    data[item] = this.resort(data[item]);
+                };
                 this.chapter = data;
                 for(var item in this.chapter){
                     this.sum += this.chapter[item].length;
-                }
+                };
             })
         },
         hiddenHeader(){

@@ -17,11 +17,13 @@ import 'element-ui/lib/theme-chalk/index.css';
 import VueJsonp from 'vue-jsonp';
 //导入全局函数
 import Common from './main/common/common.js';
+import Resort from './main/common/sort.js';
 
 Vue.use(VueJsonp)
 Vue.use(ElementUI)
 Vue.use(Common);
 Vue.use(Vant);
+Vue.use(Resort);
 
 var vm=new Vue({
     el:'#app',
