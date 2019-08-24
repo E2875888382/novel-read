@@ -5,7 +5,7 @@
     </div>
     <div class="col-12 dir">
         <p>目录</p>
-        <p class="col-12">共484章</p>
+        <p class="col-12">共{{sum}}章</p>
     </div>
     <div v-for="(item,key,index) in chapter" :key="index">
         <p class="sup">{{key}}</p>
@@ -29,6 +29,7 @@ export default {
         return {
             current:this.$route.params.name,
             chapter:[],
+            sum:0,
         }
     },
     filters:{
@@ -50,6 +51,9 @@ export default {
         chapterList(){
             this.jsp('chapterList',{book:this.current}).then((data)=>{
                 this.chapter = data;
+                for(var item in this.chapter){
+                    this.sum += this.chapter[item].length;
+                }
             })
         },
         hiddenHeader(){

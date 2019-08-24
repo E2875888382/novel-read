@@ -14,7 +14,7 @@
             </div>
             <van-image slot="thumb" width="120" height="160" :src="book.cover"/>
             <div slot="footer">
-                <van-button type="danger" size="small">加入书架</van-button>
+                <van-button type="danger" size="small" @click="addToBookshelf">加入书架</van-button>
             </div>
         </van-card>
     </div>
@@ -44,7 +44,17 @@ export default {
     mounted(){
         this.bookIfo();
     },
+    watch:{
+        $route(to,from){
+            this.current = this.$route.params.name;
+            this.bookIfo();
+        }
+    },
     methods:{
+        addToBookshelf(){
+            localStorage.setItem(this.current,JSON.stringify(this.book));
+            this.$toast.success('已加入书架');
+        },
         bookIfo(){
             this.jsp('bookIfo',{book:this.current}).then((data)=>{
                 this.book = data;
