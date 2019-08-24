@@ -81,6 +81,9 @@ export default {
     methods:{
         chapterList(){
             this.jsp('chapterList',{book:this.current}).then((data)=>{
+                for(var item in data){
+                    data[item] = this.resort(data[item]);
+                };
                 this.list = data;
             })
         },
@@ -98,26 +101,41 @@ export default {
         showFooter(){
             this.$store.commit('hiddenFooter',true);
         },
-        back(){
-            this.$router.push({path:'/book/dir'});
-        },
         onRefresh() {
             setTimeout(() => {
+                for(var item in this.list){
+                    this.list[item].forEach((e,index)=>{
+                        if(e == this.chapter){
+                            if((index-1)>=0){
+                                this.$router.push({name:'detail',params:{name:this.current,volume:item,chapter:this.list[item][index-1]}});
+                            }else{
+
+                            }
+                        }
+                    })
+                };
                 this.isLoading = false;
             }, 500);
         },
         onLoad() {
-            // 异步更新数据
-             setTimeout(() => {
-
-                    this.loading = false;
-                    // 数据全部加载完成
-                    if (this.content.length > 2) {
-                        this.finished = true;
+            setTimeout(()=>{
+                window.scrollTo(0,0);
+                this.next()
+                this.loading = false;
+            },1000)
+        },
+        next(){
+            for(var item in this.list){
+                this.list[item].forEach((e,index)=>{
+                    if(e == this.chapter){
+                        if((index+1)<this.list[item].length){
+                            this.$router.push({name:'detail',params:{name:this.current,volume:item,chapter:this.list[item][index+1]}});
+                        }else{
+                            this.finished = true;
+                        }
                     }
-
-
-             },300)
+                })
+            };
         }
     }
 }
