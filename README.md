@@ -45,4 +45,13 @@
       - 正确用法就是通过resolve传递值，返回一个promise就行了
   - 4.vue-router命名路由真的很好用哦
     - 同一路由下数据不刷新的解决办法：1.watch监听router 2.官方新的api，导航守卫```https://router.vuejs.org/zh/guide/advanced/navigation-guards.html```
+## 六.运行截图
+  ![1](./src/img/1.png)
+  ![2](./src/img/2.png)
+  ![3](./src/img/3.png)
+  ![4](./src/img/4.png)
+  ![5](./src/img/5.png)
+  ![6](./src/img/6.png)
+  ![7](./src/img/7.png)
+  ![8](./src/img/8.png)
 
