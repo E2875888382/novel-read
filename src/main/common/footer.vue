@@ -16,6 +16,9 @@ div{
     align-items:center;
     justify-content: center;
     height:30px;
+    position: relative;
+    bottom:0;
+    left:0;
 }
 p{
     color:#999;

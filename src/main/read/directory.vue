@@ -66,7 +66,7 @@ export default {
             this.$store.commit('hiddenHeader',true);
         },
         back(){
-            this.$router.go(-1);
+            this.$router.push({name:'read',params:{name:this.current}});
         },
     }
 }

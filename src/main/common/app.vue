@@ -1,5 +1,5 @@
 <template>
-<div>
+<div style="height:100%">
      <Head v-if="this.$store.state.header_show"></Head>
      <transition mode="out-in">
           <router-view></router-view>
