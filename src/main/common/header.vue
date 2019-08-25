@@ -5,7 +5,7 @@
         <van-card v-for="(item,index) in bookshelf" :key="index" @click="read(item.title)">
             <h5 slot="title">{{ item.title }}</h5>
             <p slot="desc">{{ item.author }}</p>
-            <el-image slot="thumb" style=" height:100px;width:80px" :src="item.cover" fit="fill"></el-image>
+            <van-image slot="thumb" style=" height:100px;width:80px" :src="item.cover" fit="fill"></van-image>
             <div slot="footer">
                 <van-button type="danger" size="small" @click="removeFromBookshelf(item.title)">移出书架</van-button>
             </div>
@@ -75,7 +75,7 @@ export default {
 .row{
     margin:0;
 }
-.el-image{
+.van-image{
     box-shadow: 0 1px 6px rgba(0,0,0,.35), 0 0 5px #f9f2e9 inset;
 }
 .van-card{

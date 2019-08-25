@@ -4,7 +4,7 @@
         <el-carousel :interval="3000" type="card" height="150px" indicator-position="none">
             <el-carousel-item v-for="(item,index) in books" :key="index" class="carousel_item">
                 <router-link :to="{name:'read',params:{name:item.title}}">
-                    <el-image style=" height: 124px;width:93px" :src="item.cover" fit="fill"></el-image>
+                    <van-image style=" height: 124px;width:93px" :src="item.cover" fit="fill"></van-image>
                 </router-link>
             </el-carousel-item>
         </el-carousel>
@@ -17,7 +17,7 @@
         <van-grid :column-num="3" :border="false">
             <van-grid-item v-for="(item,index) in books" :key="index">
                 <router-link :to="{name:'read',params:{name:item.title}}">
-                    <el-image style=" height:110px;width:95px" :src="item.cover" fit="fill"></el-image>
+                    <van-image style=" height:110px;width:95px" :src="item.cover" fit="fill"></van-image>
                     <span class="bookName">{{ item.title }}</span>
                 </router-link>
             </van-grid-item>
@@ -33,7 +33,7 @@
                 <van-tab title="热销榜">
                     <van-swipe :loop="false" :width="110" :height="160" :show-indicators="false">
                         <van-swipe-item v-for="(item,index) in books" :key="index" class="swipe_item">
-                            <el-image style="height:110px;width:95px" :src="item.cover" fit="fill"></el-image>
+                            <van-image style="height:110px;width:95px" :src="item.cover" fit="fill"></van-image>
                             <span class="bookName">{{ item.title }}</span>
                         </van-swipe-item>
                     </van-swipe>
@@ -41,7 +41,7 @@
                 <van-tab title="风云榜">
                     <van-swipe :loop="false" :width="110" :height="160" :show-indicators="false">
                         <van-swipe-item v-for="(item,index) in books" :key="index" class="swipe_item">
-                            <el-image style="height:110px;width:95px" :src="item.cover" fit="fill"></el-image>
+                            <van-image style="height:110px;width:95px" :src="item.cover" fit="fill"></van-image>
                             <span class="bookName">{{ item.title }}</span>
                         </van-swipe-item>
                     </van-swipe>
@@ -49,7 +49,7 @@
                 <van-tab title="签约榜">
                     <van-swipe :loop="false" :width="110" :height="160" :show-indicators="false">
                         <van-swipe-item v-for="(item,index) in books" :key="index" class="swipe_item">
-                            <el-image style="height:110px;width:95px" :src="item.cover" fit="fill"></el-image>
+                            <van-image style="height:110px;width:95px" :src="item.cover" fit="fill"></van-image>
                             <span class="bookName">{{ item.title }}</span>
                         </van-swipe-item>
                     </van-swipe>
@@ -57,7 +57,7 @@
                 <van-tab title="推荐榜">
                     <van-swipe :loop="false" :width="110" :height="160" :show-indicators="false">
                         <van-swipe-item v-for="(item,index) in books" :key="index" class="swipe_item">
-                            <el-image style="height:110px;width:95px" :src="item.cover" fit="fill"></el-image>
+                            <van-image style="height:110px;width:95px" :src="item.cover" fit="fill"></van-image>
                             <span class="bookName">{{ item.title }}</span>
                         </van-swipe-item>
                     </van-swipe>
@@ -86,7 +86,7 @@
                     </div>
                 </div>
                 <router-link :to="{name:'read',params:{name:item.title}}" slot="thumb" >
-                    <el-image style=" height:110px;width:80px" :src="item.cover" fit="fill"></el-image>
+                    <van-image style=" height:110px;width:80px" :src="item.cover" fit="fill"></van-image>
                 </router-link>
             </van-card>
         </div>
@@ -198,7 +198,7 @@ export default {
     max-width:80px;
     text-overflow: ellipsis;
 }
-.el-image{
+.van-image{
     box-shadow: 0 1px 6px rgba(0,0,0,.35), 0 0 5px #f9f2e9 inset;
 }
 </style>

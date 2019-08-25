@@ -20,7 +20,7 @@
                     <van-tag plain type="primary">291.62万字</van-tag>
                 </div>
             </div>
-            <el-image slot="thumb" style=" height:110px;width:80px" :src="item.cover" fit="fill"></el-image>
+            <van-image slot="thumb" style=" height:110px;width:80px" :src="item.cover" fit="fill"></van-image>
         </van-card>
         </van-list>
     </div>
@@ -96,7 +96,7 @@ export default {
     display:flex;
     align-items:center;
 }
-.el-image{
+.van-image{
     box-shadow: 0 1px 6px rgba(0,0,0,.35), 0 0 5px #f9f2e9 inset;
 }
 </style>
