@@ -1,6 +1,14 @@
 <template>
-<div class="bg">
-    <van-popup v-model="show" position="left" :style="{ width: '70%',height:'100%' }">
+<div :class="{'bg':true,'black':protect}">
+    <van-action-sheet v-model="show" >
+        <div class="row" style="height:40px;background:black">
+            <van-icon name="arrow-left" @click="back" class="col-4"/>
+            <van-icon name="wap-nav" @click="listShow = !listShow" class="col-4"/>
+            <van-icon name="closed-eye" @click="protect = !protect" v-if="!protect" class="col-4"/>
+            <van-icon name="eye-o" @click="protect = !protect" v-if="protect" class="col-4"/>
+        </div>
+    </van-action-sheet>
+    <van-popup v-model="listShow" position="left" :style="{ width: '70%',height:'100%' }">
         <div class="col-12 dir">
             <p>目录</p>
         </div>
@@ -19,7 +27,7 @@
         </div>
     </van-popup>
     <van-sticky>
-        <p class="col-12 top">{{ chapter|format }}</p>
+        <p class="col-12 top" :class="{'black':protect,'white':protect}">{{ chapter|format }}</p>
     </van-sticky>
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh" loosing-text="释放加载上一章" pulling-text="下拉加载上一章">
         <van-list
@@ -30,8 +38,8 @@
         :immediate-check="false"
         >
             <div class="content" @click="show = !show">
-                <h4 class="col-12">{{ chapter|format }}</h4>
-                <p class="col-12" v-for="(text,index) in content" :key="index">{{ text }}</p>
+                <h4 class="col-12" :class="{'white':protect}">{{ chapter|format }}</h4>
+                <p class="col-12" v-for="(text,index) in content" :key="index" :class="{'white':protect}">{{ text }}</p>
             </div>
         </van-list>
     </van-pull-refresh>
@@ -42,10 +50,12 @@
 export default {
     data(){
         return {
+            protect:false,
             current:this.$route.params.name,
             volume:this.$route.params.volume,
             chapter:this.$route.params.chapter,
             show:false,
+            listShow:false,
             loading: false,
             finished: false,
             isLoading: false,
@@ -79,6 +89,9 @@ export default {
         this.showFooter();
     },
     methods:{
+        back(){
+            this.$router.push({name:'chapter',params:{name:this.current}})
+        },
         chapterList(){
             this.jsp('chapterList',{book:this.current}).then((data)=>{
                 for(var item in data){
@@ -142,6 +155,19 @@ export default {
 </script>
 
 <style scoped>
+.white{
+    color:#999 !important;
+}
+.black{
+    background: none !important;
+    background-color: #212529 !important;
+}
+.van-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:white;
+}
 .bg{
     background:url('../../img/bg.png') no-repeat;
     background-size: 100% 100%;
