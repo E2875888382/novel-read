@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>小说爬虫</title>
+    </head>
+    <body>
+        <div id="app">
+            <el-input v-model="url" placeholder="请输入内容"></el-input>
+            <el-button @click="build">写入内容</el-button>
+        </div>
+        <script src="./node_modules/vue/dist/vue.js"></script>
+        <script src="./node_modules/axios/dist/axios.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+        <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+        <script>
+            var vm = new Vue({
+                el:'#app',
+                data:{
+                    url:'',
+                },
+                methods:{
+                    build(){
+                        axios.get(`http:localhost:4000/build?url=${this.url}`)
+                        .then(function (response) {
+
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                    },
+                }
+            })
+        </script>
+    </body>
+</html>
